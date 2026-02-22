@@ -51,12 +51,26 @@ export default function Topbar() {
           <NavLink href="/dashboard" active={pathname.startsWith("/dashboard")}>
             Panel
           </NavLink>
-          <NavLink href="/calendar" active={pathname.startsWith("/calendar")}>
-            Calendario
+
+          {/* Renombrado: Calendario -> Entrenamientos */}
+          <NavLink href="/trainings" active={pathname.startsWith("/trainings")}>
+            Entrenamientos
           </NavLink>
+
+          {/* Nueva: Partidos */}
+          <NavLink href="/matches" active={pathname.startsWith("/matches")}>
+            Partidos
+          </NavLink>
+
+          {/* Nueva: Equipos */}
+          <NavLink href="/equipos" active={pathname.startsWith("/equipos")}>
+            Equipos
+          </NavLink>
+
           <NavLink href="/stats" active={pathname.startsWith("/stats")}>
             Estadísticas
           </NavLink>
+
           <NavLink href="/gallery" active={pathname.startsWith("/gallery")}>
             Galería
           </NavLink>
@@ -65,7 +79,7 @@ export default function Topbar() {
         <div className="bz-right">
           {isAuthed ? (
             <button className="bz-btn" onClick={logout}>
-              Salir
+              Cerrar sesión
             </button>
           ) : (
             <Link className="bz-btnGhost" href="/login">

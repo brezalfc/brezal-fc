@@ -1,82 +1,91 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export default function LoginPage() {
-  const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin() {
-    setLoading(true);
+  async function login() {
     setMsg(null);
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
 
-    if (error) {
-      setMsg("❌ " + error.message);
-      return;
-    }
-
-    router.push("/dashboard");
+    if (error) return setMsg("❌ " + error.message);
+    window.location.href = "/dashboard";
   }
 
   return (
-    <div style={{ padding: 20, maxWidth: 400, margin: "60px auto" }}>
-      <h1 style={{ textAlign: "center", fontSize: 28, fontWeight: 800 }}>
-        BREZAL FC
-      </h1>
+    <main style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
+      <div style={{ width: "min(520px, 100%)", textAlign: "center" }}>
+        <h1 style={{ fontSize: 40, fontWeight: 950, margin: 0 }}>BREZAL FC</h1>
+        <p style={{ opacity: 0.75, marginTop: 8 }}>Iniciar sesión</p>
 
-      <p style={{ textAlign: "center", opacity: 0.7 }}>
-        Iniciar sesión
-      </p>
+        {msg && (
+          <div style={{ marginTop: 12, padding: 12, borderRadius: 14, border: "1px solid rgba(255,255,255,0.12)", background: "rgba(0,0,0,0.35)" }}>
+            {msg}
+          </div>
+        )}
 
-      {msg && <p style={{ marginTop: 10 }}>{msg}</p>}
+        <div style={{ display: "grid", gap: 10, marginTop: 16 }}>
+          <input
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={input}
+          />
+          <input
+            placeholder="Contraseña"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={input}
+          />
+          <button onClick={login} className="bz-btn" style={{ padding: 14, borderRadius: 14, fontWeight: 950 }} disabled={loading}>
+            {loading ? "Entrando..." : "Entrar"}
+          </button>
+        </div>
 
-      <div style={{ display: "grid", gap: 12, marginTop: 20 }}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ padding: 12 }}
-        />
+        <p style={{ marginTop: 18, opacity: 0.9 }}>
+          ¿No tienes cuenta?{" "}
+          <Link href="/register" style={{ color: "rgba(245,216,77,0.95)", fontWeight: 900 }}>
+            Crear cuenta
+          </Link>
+        </p>
 
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ padding: 12 }}
-        />
-
-        <button
-          onClick={handleLogin}
-          disabled={loading}
-          style={{
-            padding: 12,
-            fontWeight: 700,
-            cursor: "pointer",
-          }}
-        >
-          {loading ? "Entrando..." : "Entrar"}
-        </button>
+        {/* IMAGEN (bien separada) */}
+        <div style={{ marginTop: 28, opacity: 0.95 }}>
+          <Image
+            src="/logeoperro.png"
+            alt="Brezal FC"
+            width={520}
+            height={520}
+            style={{
+              width: "100%",
+              height: "auto",
+              borderRadius: 18,
+              filter: "drop-shadow(0 30px 80px rgba(0,0,0,0.55))",
+              background: "rgba(0,0,0,0.25)",
+            }}
+            priority
+          />
+        </div>
       </div>
-
-      <p style={{ marginTop: 16, textAlign: "center" }}>
-        ¿No tienes cuenta? <Link href="/register">Crear cuenta</Link>
-      </p>
-    </div>
+    </main>
   );
 }
+
+const input: React.CSSProperties = {
+  width: "100%",
+  padding: 14,
+  borderRadius: 14,
+  border: "1px solid rgba(255,255,255,0.12)",
+  background: "rgba(0,0,0,0.35)",
+  color: "white",
+};

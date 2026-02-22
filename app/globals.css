@@ -467,3 +467,593 @@ a {
   .bz-right { min-width: auto; }
   .bz-nav { overflow-x: auto; max-width: 56vw; }
 }
+/* =========================
+   DASHBOARD botones
+========================= */
+.bz-dashBtn {
+  padding: 20px;
+  border-radius: 18px;
+  border: 2px solid #f5d84d;
+  font-weight: 900;
+  font-size: 18px;
+  text-decoration: none;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  display: block;
+  text-align: center;
+  transition: transform 0.08s ease, background 0.12s ease, box-shadow 0.12s ease;
+}
+
+.bz-dashBtn:hover {
+  transform: translateY(-1px);
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   Imagen final + FADE
+========================= */
+.bz-teamWrapper {
+  position: relative;
+  margin-top: 46px; /* ✅ separación grande respecto botones */
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(245, 216, 77, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.bz-teamImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.92;
+  transform: translateZ(0);
+}
+
+/* Fade arriba y abajo para que “se funda” con el fondo */
+.bz-teamWrapper::before,
+.bz-teamWrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bz-teamWrapper::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(10, 12, 14, 1), rgba(10, 12, 14, 0));
+}
+
+.bz-teamWrapper::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(10, 12, 14, 1), rgba(10, 12, 14, 0));
+}
+
+/* =========================
+   Imagen premium deportiva
+========================= */
+
+.bz-teamWrapper {
+  position: relative;
+  margin-top: 90px; /* separación grande */
+  border-radius: 24px;
+  overflow: hidden;
+  background: black;
+}
+
+/* Zoom muy leve continuo */
+.bz-teamImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.95;
+  animation: slowZoom 18s ease-in-out infinite alternate;
+}
+
+/* Degradado fuerte arriba */
+.bz-teamWrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 12, 14, 1) 0%,
+    rgba(10, 12, 14, 0.85) 40%,
+    rgba(10, 12, 14, 0) 100%
+  );
+  z-index: 2;
+}
+
+/* Fade inferior suave */
+.bz-teamWrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(
+    to top,
+    rgba(10, 12, 14, 1),
+    rgba(10, 12, 14, 0)
+  );
+  z-index: 2;
+}
+
+/* Animación zoom */
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+/* =========================
+   DASHBOARD (Panel principal)
+   ========================= */
+
+.bz-dash {
+  padding: 34px 18px 46px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bz-dashTitle {
+  margin: 10px 0 0;
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  color: rgba(255, 255, 255, 0.96);
+
+  /* glow amarillo sutil */
+  text-shadow:
+    0 0 18px rgba(245, 216, 77, 0.22),
+    0 0 42px rgba(245, 216, 77, 0.14);
+}
+
+/* Más separación entre título y enlaces */
+.bz-dashLinks {
+  display: grid;
+  gap: 22px;           /* separación entre botones */
+  margin-top: 34px;    /* separación desde el título */
+}
+
+.bz-dashBtn {
+  display: block;
+  padding: 22px 18px;
+  border-radius: 18px;
+  border: 2px solid rgba(245, 216, 77, 0.9);
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.95);
+
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+  will-change: transform;
+}
+
+/* “Efecto Nike”: zoom MUY leve + glow + respiración */
+.bz-dashBtn:hover {
+  transform: translateY(-2px) scale(1.01);
+  border-color: rgba(245, 216, 77, 1);
+  background: rgba(0, 0, 0, 0.62);
+  box-shadow:
+    0 24px 75px rgba(0, 0, 0, 0.45),
+    0 0 0 2px rgba(245, 216, 77, 0.14),
+    0 0 26px rgba(245, 216, 77, 0.18);
+}
+
+.bz-dashBtn:active {
+  transform: translateY(0px) scale(0.995);
+}
+
+/* =========================
+   IMAGEN FINAL (integrada)
+   ========================= */
+
+.bz-teamWrapper {
+  position: relative;
+  margin-top: 34px;          /* separación respecto a los botones */
+  border-radius: 22px;
+  overflow: hidden;
+
+  /* Fondo base: que el final “tire” a amarillo */
+  background:
+    radial-gradient(1200px 520px at 50% 110%, rgba(245, 216, 77, 0.45), rgba(245, 216, 77, 0) 62%),
+    radial-gradient(900px 420px at 0% 0%, rgba(245, 216, 77, 0.12), rgba(0, 0, 0, 0) 60%),
+    rgba(0, 0, 0, 0.35);
+
+  border: 1px solid rgba(245, 216, 77, 0.18);
+  box-shadow: 0 28px 85px rgba(0, 0, 0, 0.55);
+}
+
+/* Degradado fuerte arriba (fade) */
+.bz-teamFadeTop {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.34) 36%,
+    rgba(0, 0, 0, 0.10) 64%,
+    rgba(0, 0, 0, 0.00) 100%
+  );
+  z-index: 2;
+}
+
+/* Empuje amarillo abajo para integrar */
+.bz-teamFadeBottom {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(245, 216, 77, 0.00) 55%,
+    rgba(245, 216, 77, 0.22) 78%,
+    rgba(245, 216, 77, 0.42) 100%
+  );
+  z-index: 1;
+}
+
+.bz-teamImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.96;
+  filter: contrast(1.02) brightness(1.02);
+
+  /* Fade suave hacia abajo para que “se funda” con el amarillo */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 62%, rgba(0,0,0,0.75) 78%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 62%, rgba(0,0,0,0.75) 78%, rgba(0,0,0,0) 100%);
+}
+/* ===== Dashboard look ===== */
+.bz-dashTitle {
+  font-size: 40px;
+  font-weight: 900;
+  margin: 26px 0 38px; /* más separación del título */
+  color: #fff;
+  text-shadow:
+    0 0 10px rgba(245, 216, 77, 0.25),
+    0 0 28px rgba(245, 216, 77, 0.15);
+}
+
+.bz-dashGrid {
+  display: grid;
+  gap: 22px;
+  margin-top: 10px;
+}
+
+.bz-dashBtn {
+  padding: 22px;
+  border-radius: 18px;
+  border: 2px solid #f5d84d;
+  font-weight: 900;
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  background: rgba(0, 0, 0, 0.55);
+  display: block;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+}
+
+.bz-dashBtn:hover {
+  transform: translateY(-2px);
+  background: rgba(0, 0, 0, 0.62);
+  box-shadow:
+    0 22px 70px rgba(0,0,0,0.45),
+    0 0 0 2px rgba(245, 216, 77, 0.15);
+}
+
+/* ===== Imagen final: zoom leve + fade + mezcla con amarillo ===== */
+.bz-teamWrapper {
+  position: relative;
+  margin-top: 44px; /* más separado de botones */
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(245, 216, 77, 0.22);
+  background: radial-gradient(
+    1200px 500px at 50% 0%,
+    rgba(245, 216, 77, 0.12),
+    rgba(0,0,0,0.0)
+  );
+}
+
+.bz-teamImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: scale(1.03); /* zoom muy leve */
+  transition: transform 400ms ease;
+  opacity: 0.95;
+}
+
+.bz-teamWrapper:hover .bz-teamImage {
+  transform: scale(1.045);
+}
+
+.bz-teamFadeTop {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Esto integra la parte baja con el "amarillo" del tema */
+.bz-teamFadeBottom {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 170px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0),
+    rgba(245, 216, 77, 0.12) 45%,
+    rgba(245, 216, 77, 0.30) 75%,
+    rgba(245, 216, 77, 0.45) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+/* ===== Layout general ===== */
+.bz-container {
+  padding: 26px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.bz-headerRow{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.bz-h1{
+  font-size: 40px;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.bz-sub{
+  margin: 8px 0 0;
+  opacity: .75;
+}
+
+.bz-pillRow{ display:flex; gap:10px; flex-wrap:wrap; }
+.bz-pill{
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  font-size: 12px;
+  opacity: .9;
+}
+
+/* ===== Panel / Cards ===== */
+.bz-panel{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  box-shadow: 0 18px 60px rgba(0,0,0,.55);
+  overflow: hidden;
+}
+
+.bz-grid2{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr; /* detalle más estrecho para ver el perro */
+  gap: 14px;
+}
+@media (max-width: 900px){
+  .bz-grid2{ grid-template-columns: 1fr; }
+}
+
+.bz-card{
+  text-align:left;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(245,216,77,.25);
+  background: rgba(0,0,0,.35);
+  cursor:pointer;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.bz-card:hover{
+  transform: translateY(-1px);
+  border-color: rgba(245,216,77,.45);
+  background: rgba(0,0,0,.45);
+}
+.bz-cardActive{
+  border: 2px solid rgba(245,216,77,.85);
+}
+
+.bz-cardTitle{ font-weight: 900; font-size: 16px; }
+.bz-cardSub{ opacity: .75; margin-top: 4px; font-size: 13px; }
+.bz-cardDate{ opacity: .9; font-size: 13px; }
+
+/* ===== Detalle + perro ===== */
+.bz-detailPanel{ position: relative; }
+.bz-dogBg{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity: .22;               /* más visible (antes estaba demasiado) */
+  filter: blur(1.2px);        /* leve blur */
+  transform: translateX(14%) scale(1.05);
+  pointer-events:none;
+}
+.bz-detailPanel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background: radial-gradient(circle at 60% 40%, rgba(245,216,77,.16), rgba(0,0,0,.65) 65%);
+  pointer-events:none;
+}
+
+.bz-detailLine{
+  display:flex;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.bz-detailLine span{ opacity:.75; }
+.bz-warn{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(245,216,77,.25);
+  background: rgba(245,216,77,.08);
+}
+
+/* ===== Inputs / Buttons ===== */
+.bz-input{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.35);
+  color: white;
+}
+
+.bz-btn{
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(245,216,77,.25);
+  background: rgba(0,0,0,.35);
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.bz-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(245,216,77,.45);
+  background: rgba(0,0,0,.45);
+}
+.bz-btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  transform:none;
+}
+.bz-btnPrimary{
+  border: 1px solid rgba(245,216,77,.45);
+  background: rgba(245,216,77,.12);
+}
+
+/* ===== Calendario ===== */
+.bz-calHead{
+  margin-top: 14px;
+  display:grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 10px;
+  opacity: .65;
+  font-size: 12px;
+  text-align:center;
+}
+
+.bz-calGrid{
+  margin-top: 10px;
+  display:grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 10px;
+}
+
+.bz-calCell{
+  height: 46px;
+  border-radius: 14px;
+  display:grid;
+  place-items:center;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.25);
+  font-weight: 800;
+}
+.bz-calEmpty{
+  opacity: .25;
+}
+.bz-calMarked{
+  border-color: rgba(245,216,77,.65);
+  background: rgba(245,216,77,.14);
+  box-shadow: 0 10px 30px rgba(245,216,77,.08);
+}
+/* =========================
+   ENTRENAMIENTOS: panel detalle con mascota
+   ========================= */
+
+.bz-detailPanel {
+  padding: 18px;
+}
+
+.bz-detailGrid {
+  display: grid;
+  grid-template-columns: minmax(320px, 520px) 1fr;
+  gap: 18px;
+  align-items: stretch;
+  min-height: 260px;
+}
+
+.bz-detailLeft {
+  z-index: 2;
+}
+
+/* Columna del perro */
+.bz-detailArt {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 240px;
+}
+
+/* Perro + difuminado + integración */
+.bz-detailArt::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background-image: url("/dog.png");
+  background-repeat: no-repeat;
+  background-position: 70% 55%;
+  background-size: contain;
+  opacity: 0.22;               /* más visible que antes */
+  filter: blur(1.2px);
+  transform: scale(1.03);
+}
+
+/* Vignette/halo para integrar */
+.bz-detailArt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 70% 55%, rgba(245,216,77,0.18), rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 70% 55%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 70%),
+    linear-gradient(90deg, rgba(0,0,0,0.65), rgba(0,0,0,0.0) 40%);
+}
+
+/* Responsive: que baje abajo en móvil */
+@media (max-width: 900px) {
+  .bz-detailGrid {
+    grid-template-columns: 1fr;
+  }
+  .bz-detailArt {
+    min-height: 220px;
+  }
+  .bz-detailArt::before {
+    background-position: 50% 55%;
+  }
+}
