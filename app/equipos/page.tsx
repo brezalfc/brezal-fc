@@ -24,13 +24,18 @@ function displayName(p: Profile) {
   return n || p.user_id.slice(0, 8);
 }
 
-// ✅ Orden móvil/desktop: Cadete -> Juvenil -> Senior
+// ✅ Orden: Cadete -> Juvenil -> Senior (y el resto al final)
 function divisionRank(name: string) {
-  const n = String(name || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const n = String(name || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
   if (n.includes("cadete")) return 0;
   if (n.includes("juvenil")) return 1;
   if (n.includes("senior") || n.includes("sénior") || n.includes("1a") || n.includes("primera")) return 2;
-  return 99; // cualquier otra división al final
+
+  return 99;
 }
 
 export default function EquiposPage() {
@@ -49,6 +54,7 @@ export default function EquiposPage() {
   async function loadRole() {
     const { data: u } = await supabase.auth.getUser();
     const uid = u.user?.id;
+
     if (!uid) {
       window.location.href = "/login";
       return;
@@ -109,7 +115,7 @@ export default function EquiposPage() {
     return map;
   }, [divisions, profiles, links]);
 
-  // ✅ divisiones ordenadas: Cadete -> Juvenil -> Senior (y el resto al final)
+  // ✅ Cadete -> Juvenil -> Senior
   const orderedDivisions = useMemo(() => {
     return divisions
       .slice()
@@ -147,6 +153,7 @@ export default function EquiposPage() {
     if (!canManage) return setMsg("🚫 Solo admin/coach puede quitar.");
 
     const { error } = await supabase.from("player_divisions").delete().eq("user_id", user_id).eq("division_id", division_id);
+
     if (error) return setMsg("❌ " + error.message);
 
     setMsg("✅ Quitado");
@@ -172,13 +179,29 @@ export default function EquiposPage() {
       </div>
 
       {msg && (
-        <div style={{ marginTop: 14, padding: 12, border: "1px solid rgba(255,255,255,0.10)", borderRadius: 14, background: "rgba(0,0,0,0.35)" }}>
+        <div
+          style={{
+            marginTop: 14,
+            padding: 12,
+            border: "1px solid rgba(255,255,255,0.10)",
+            borderRadius: 14,
+            background: "rgba(0,0,0,0.35)",
+          }}
+        >
           {msg}
         </div>
       )}
 
       {canManage && (
-        <section style={{ marginTop: 16, padding: 14, borderRadius: 18, border: "1px solid rgba(255,255,255,0.10)", background: "rgba(0,0,0,0.35)" }}>
+        <section
+          style={{
+            marginTop: 16,
+            padding: 14,
+            borderRadius: 18,
+            border: "1px solid rgba(255,255,255,0.10)",
+            background: "rgba(0,0,0,0.35)",
+          }}
+        >
           <h3 style={{ margin: 0 }}>Asignar jugador a división (máx 2)</h3>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr auto", gap: 10, marginTop: 12 }}>
@@ -215,7 +238,7 @@ export default function EquiposPage() {
         </section>
       )}
 
-      {/* ✅ Grid responsive: 1 columna en móvil, 3 en desktop */}
+      {/* ✅ MÓVIL: 1 columna / DESKTOP: 3 columnas */}
       <section className="teamsGrid" style={{ marginTop: 16 }}>
         {orderedDivisions.map((d) => (
           <div key={d.id} style={panel}>
