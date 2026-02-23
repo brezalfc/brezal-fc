@@ -24,6 +24,15 @@ function displayName(p: Profile) {
   return n || p.user_id.slice(0, 8);
 }
 
+// ✅ Orden móvil/desktop: Cadete -> Juvenil -> Senior
+function divisionRank(name: string) {
+  const n = String(name || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  if (n.includes("cadete")) return 0;
+  if (n.includes("juvenil")) return 1;
+  if (n.includes("senior") || n.includes("sénior") || n.includes("1a") || n.includes("primera")) return 2;
+  return 99; // cualquier otra división al final
+}
+
 export default function EquiposPage() {
   const [msg, setMsg] = useState<string | null>(null);
   const [myRole, setMyRole] = useState<"admin" | "coach" | "player">("player");
@@ -99,6 +108,13 @@ export default function EquiposPage() {
 
     return map;
   }, [divisions, profiles, links]);
+
+  // ✅ divisiones ordenadas: Cadete -> Juvenil -> Senior (y el resto al final)
+  const orderedDivisions = useMemo(() => {
+    return divisions
+      .slice()
+      .sort((a, b) => divisionRank(a.name) - divisionRank(b.name) || String(a.name).localeCompare(String(b.name)));
+  }, [divisions]);
 
   const selectedDivisionCount = useMemo(() => {
     if (!selectedUserId) return 0;
@@ -199,64 +215,75 @@ export default function EquiposPage() {
         </section>
       )}
 
-      <section style={{ marginTop: 16, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
-        {divisions
-          .slice()
-          .sort((a, b) => String(a.name).localeCompare(String(b.name)))
-          .map((d) => (
-            <div key={d.id} style={panel}>
-              <h3 style={{ marginTop: 0 }}>{String(d.name).toUpperCase()}</h3>
+      {/* ✅ Grid responsive: 1 columna en móvil, 3 en desktop */}
+      <section className="teamsGrid" style={{ marginTop: 16 }}>
+        {orderedDivisions.map((d) => (
+          <div key={d.id} style={panel}>
+            <h3 style={{ marginTop: 0 }}>{String(d.name).toUpperCase()}</h3>
 
-              {(playersByDivision.get(d.id) || []).map((p) => (
-                <div key={`${d.id}-${p.user_id}`} style={playerCard}>
-                  <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                    {/* FOTO (si hay URL) - usando <img> para evitar el error de next/image */}
-                    {p.photo_url ? (
-                      <img
-                        src={p.photo_url}
-                        alt={displayName(p)}
-                        style={{
-                          width: 54,
-                          height: 54,
-                          borderRadius: 14,
-                          objectFit: "cover",
-                          border: "1px solid rgba(245,216,77,0.35)",
-                          background: "rgba(0,0,0,0.35)",
-                        }}
-                      />
-                    ) : (
-                      <div
-                        style={{
-                          width: 54,
-                          height: 54,
-                          borderRadius: 14,
-                          border: "1px solid rgba(255,255,255,0.12)",
-                          background: "rgba(0,0,0,0.25)",
-                        }}
-                      />
-                    )}
-
-                    <div>
-                      <div style={{ fontWeight: 950 }}>
-                        {displayName(p)}
-                        {p.jersey_number ? <span style={{ opacity: 0.9 }}> · #{p.jersey_number}</span> : null}
-                      </div>
-                      <div style={{ fontSize: 12, opacity: 0.75 }}>{p.position ? p.position : "—"}</div>
-                    </div>
-                  </div>
-
-                  {canManage && (
-                    <button className="bz-btn" onClick={() => remove(p.user_id, d.id)} style={{ padding: "8px 10px", borderRadius: 12 }}>
-                      Quitar
-                    </button>
+            {(playersByDivision.get(d.id) || []).map((p) => (
+              <div key={`${d.id}-${p.user_id}`} style={playerCard}>
+                <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                  {p.photo_url ? (
+                    <img
+                      src={p.photo_url}
+                      alt={displayName(p)}
+                      style={{
+                        width: 54,
+                        height: 54,
+                        borderRadius: 14,
+                        objectFit: "cover",
+                        border: "1px solid rgba(245,216,77,0.35)",
+                        background: "rgba(0,0,0,0.35)",
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: 54,
+                        height: 54,
+                        borderRadius: 14,
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        background: "rgba(0,0,0,0.25)",
+                      }}
+                    />
                   )}
-                </div>
-              ))}
 
-              {(playersByDivision.get(d.id) || []).length === 0 && <p style={{ opacity: 0.7, marginTop: 10 }}>Sin jugadores aún.</p>}
-            </div>
-          ))}
+                  <div>
+                    <div style={{ fontWeight: 950 }}>
+                      {displayName(p)}
+                      {p.jersey_number ? <span style={{ opacity: 0.9 }}> · #{p.jersey_number}</span> : null}
+                    </div>
+                    <div style={{ fontSize: 12, opacity: 0.75 }}>{p.position ? p.position : "—"}</div>
+                  </div>
+                </div>
+
+                {canManage && (
+                  <button className="bz-btn" onClick={() => remove(p.user_id, d.id)} style={{ padding: "8px 10px", borderRadius: 12 }}>
+                    Quitar
+                  </button>
+                )}
+              </div>
+            ))}
+
+            {(playersByDivision.get(d.id) || []).length === 0 && <p style={{ opacity: 0.7, marginTop: 10 }}>Sin jugadores aún.</p>}
+          </div>
+        ))}
       </section>
+
+      {/* ✅ CSS local con media queries */}
+      <style jsx>{`
+        .teamsGrid {
+          display: grid;
+          grid-template-columns: 1fr; /* móvil */
+          gap: 14px;
+        }
+        @media (min-width: 900px) {
+          .teamsGrid {
+            grid-template-columns: repeat(3, 1fr); /* desktop */
+          }
+        }
+      `}</style>
     </main>
   );
 }

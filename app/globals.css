@@ -1,1059 +1,525 @@
-:root {
-  --bg: #07080b;
-  --panel: rgba(255, 255, 255, 0.04);
-  --panel2: rgba(255, 255, 255, 0.06);
-  --stroke: rgba(255, 255, 255, 0.10);
-  --stroke2: rgba(255, 255, 255, 0.14);
-  --text: rgba(255, 255, 255, 0.92);
-  --muted: rgba(255, 255, 255, 0.64);
-
-  --gold: #d6b46b;
-  --gold2: #f2d48a;
-  --goldGlow: rgba(214, 180, 107, 0.22);
-
-  --shadow: 0 18px 60px rgba(0, 0, 0, 0.65);
-  --radius: 18px;
-  --radius2: 14px;
-
-  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
-  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-    "Apple Color Emoji", "Segoe UI Emoji";
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: var(--sans);
-  color: var(--text);
-  background:
-    radial-gradient(1000px 500px at 20% -10%, rgba(214, 180, 107, 0.14), transparent 60%),
-    radial-gradient(900px 600px at 90% 10%, rgba(214, 180, 107, 0.10), transparent 55%),
-    radial-gradient(900px 700px at 50% 120%, rgba(255, 255, 255, 0.06), transparent 55%),
-    var(--bg);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.bz-container {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 28px 18px 60px;
-}
-
-.bz-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 14px 14px;
-  border: 1px solid var(--stroke);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
-}
-
-.bz-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.bz-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: var(--gold);
-  box-shadow: 0 0 0 6px rgba(214, 180, 107, 0.14);
-}
-
-.bz-title {
-  font-weight: 900;
-  letter-spacing: 0.2px;
-}
-
-.bz-badge {
-  font-family: var(--mono);
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--stroke2);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--muted);
-}
-
-.bz-h1 {
-  font-size: 30px;
-  margin: 18px 0 6px;
-  font-weight: 950;
-}
-
-.bz-sub {
-  margin: 0 0 8px;
-  color: var(--muted);
-}
-
-.bz-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
-  margin-top: 14px;
-}
-
-.bz-panel {
-  grid-column: span 12;
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
-}
-
-.bz-panel-inner {
-  padding: 16px;
-}
-
-.bz-chiprow {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.bz-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--stroke);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.bz-chip b {
-  color: var(--text);
-}
-
-.bz-alert {
-  border: 1px solid rgba(214, 180, 107, 0.30);
-  background: radial-gradient(800px 200px at 20% 0%, rgba(214, 180, 107, 0.20), rgba(255, 255, 255, 0.03));
-  color: var(--text);
-  padding: 12px 14px;
-  border-radius: var(--radius2);
-}
-
-.bz-tablewrap {
-  overflow-x: auto;
-  margin-top: 12px;
-  border-radius: var(--radius2);
-  border: 1px solid var(--stroke);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.bz-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 640px;
-}
-
-.bz-table th,
-.bz-table td {
-  padding: 12px 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  text-align: left;
-  font-size: 14px;
-}
-
-.bz-table th {
-  color: var(--muted);
-  font-weight: 800;
-  letter-spacing: 0.2px;
-  border-top: none;
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.bz-row:hover td {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.bz-rank {
-  font-family: var(--mono);
-  color: var(--muted);
-}
-
-.bz-name {
-  font-weight: 900;
-}
-
-.bz-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--stroke);
-  background: rgba(255, 255, 255, 0.03);
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.bz-pill strong {
-  color: var(--text);
-}
-
-.bz-gold {
-  color: var(--gold2);
-  text-shadow: 0 0 18px var(--goldGlow);
-}
-
-.bz-footerhint {
-  color: var(--muted);
-  margin-top: 10px;
-  font-size: 13px;
-}
-/* ===== Premium Topbar ===== */
-.bz-topbarShell {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  padding: 14px 18px 0;
-  backdrop-filter: blur(10px);
-}
-
-.bz-topbar {
-  max-width: 980px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-
-  padding: 12px 14px;
-  border: 1px solid var(--stroke);
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.bz-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 220px;
-}
-
-.bz-mark {
-  width: 11px;
-  height: 11px;
-  border-radius: 999px;
-  background: var(--gold2);
-  box-shadow: 0 0 0 8px rgba(214, 180, 107, 0.12);
-}
-
-.bz-brandText {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
-}
-
-.bz-brandTitle {
-  font-weight: 950;
-  letter-spacing: 0.2px;
-}
-
-.bz-brandSub {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 3px;
-}
-
-.bz-nav {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.18);
-}
-
-.bz-link {
-  font-size: 13px;
-  color: var(--muted);
-  padding: 8px 10px;
-  border-radius: 999px;
-  transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease;
-}
-
-.bz-link:hover {
-  background: rgba(255,255,255,0.06);
-  color: var(--text);
-  transform: translateY(-1px);
-}
-
-.bz-linkActive {
-  background: radial-gradient(600px 200px at 20% 0%, rgba(214,180,107,0.22), rgba(255,255,255,0.05));
-  border: 1px solid rgba(214,180,107,0.24);
-  color: var(--text);
-}
-
-.bz-right {
-  display: flex;
-  justify-content: flex-end;
-  min-width: 120px;
-}
-
-.bz-btn {
-  cursor: pointer;
-  border: 1px solid rgba(214,180,107,0.30);
-  background: radial-gradient(800px 200px at 20% 0%, rgba(214,180,107,0.26), rgba(255,255,255,0.04));
-  color: var(--text);
-  padding: 9px 12px;
-  border-radius: 12px;
-  font-weight: 800;
-  transition: transform 0.12s ease, filter 0.12s ease;
-}
-
-.bz-btn:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.05);
-}
-
-@media (max-width: 780px) {
-  .bz-left { min-width: auto; }
-  .bz-brandSub { display: none; }
-  .bz-nav { overflow-x: auto; max-width: 52vw; }
-}
-/* ===== Premium Topbar (Producción) ===== */
-.bz-topbarShell {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  padding: 14px 18px 0;
-  backdrop-filter: blur(10px);
-}
-
-.bz-topbar {
-  max-width: 980px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-
-  padding: 12px 14px;
-  border: 1px solid var(--stroke);
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.bz-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 220px;
-}
-
-.bz-mark {
-  width: 11px;
-  height: 11px;
-  border-radius: 999px;
-  background: var(--gold2);
-  box-shadow: 0 0 0 8px rgba(214, 180, 107, 0.12);
-}
-
-.bz-brandText {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
-}
-
-.bz-brandTitle {
-  font-weight: 950;
-  letter-spacing: 0.2px;
-}
-
-.bz-brandSub {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 3px;
-}
-
-.bz-nav {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.18);
-}
-
-.bz-link {
-  font-size: 13px;
-  color: var(--muted);
-  padding: 8px 10px;
-  border-radius: 999px;
-  transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease;
-  white-space: nowrap;
-}
-
-.bz-link:hover {
-  background: rgba(255,255,255,0.06);
-  color: var(--text);
-  transform: translateY(-1px);
-}
-
-.bz-linkActive {
-  background: radial-gradient(600px 200px at 20% 0%, rgba(214,180,107,0.22), rgba(255,255,255,0.05));
-  border: 1px solid rgba(214,180,107,0.24);
-  color: var(--text);
-}
-
-.bz-right {
-  display: flex;
-  justify-content: flex-end;
-  min-width: 120px;
-}
-
-.bz-btn {
-  cursor: pointer;
-  border: 1px solid rgba(214,180,107,0.30);
-  background: radial-gradient(800px 200px at 20% 0%, rgba(214,180,107,0.26), rgba(255,255,255,0.04));
-  color: var(--text);
-  padding: 9px 12px;
-  border-radius: 12px;
-  font-weight: 800;
-  transition: transform 0.12s ease, filter 0.12s ease;
-}
-
-.bz-btn:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.05);
-}
-
-.bz-btnGhost {
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.03);
-  padding: 9px 12px;
-  border-radius: 12px;
-  font-weight: 800;
-  color: var(--muted);
-}
-
-.bz-btnGhost:hover {
-  color: var(--text);
-  background: rgba(255,255,255,0.05);
-}
-
-@media (max-width: 780px) {
-  .bz-left { min-width: auto; }
-  .bz-brandSub { display: none; }
-  .bz-right { min-width: auto; }
-  .bz-nav { overflow-x: auto; max-width: 56vw; }
-}
-/* =========================
-   DASHBOARD botones
-========================= */
-.bz-dashBtn {
-  padding: 20px;
-  border-radius: 18px;
-  border: 2px solid #f5d84d;
-  font-weight: 900;
-  font-size: 18px;
-  text-decoration: none;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.45);
-  display: block;
-  text-align: center;
-  transition: transform 0.08s ease, background 0.12s ease, box-shadow 0.12s ease;
-}
-
-.bz-dashBtn:hover {
-  transform: translateY(-1px);
-  background: rgba(0, 0, 0, 0.55);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-}
-
-/* =========================
-   Imagen final + FADE
-========================= */
-.bz-teamWrapper {
-  position: relative;
-  margin-top: 46px; /* ✅ separación grande respecto botones */
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid rgba(245, 216, 77, 0.25);
-  background: rgba(0, 0, 0, 0.35);
-}
-
-.bz-teamImage {
-  width: 100%;
-  height: auto;
-  display: block;
-  opacity: 0.92;
-  transform: translateZ(0);
-}
-
-/* Fade arriba y abajo para que “se funda” con el fondo */
-.bz-teamWrapper::before,
-.bz-teamWrapper::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 120px;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.bz-teamWrapper::before {
-  top: 0;
-  background: linear-gradient(to bottom, rgba(10, 12, 14, 1), rgba(10, 12, 14, 0));
-}
-
-.bz-teamWrapper::after {
-  bottom: 0;
-  background: linear-gradient(to top, rgba(10, 12, 14, 1), rgba(10, 12, 14, 0));
-}
-
-/* =========================
-   Imagen premium deportiva
-========================= */
-
-.bz-teamWrapper {
-  position: relative;
-  margin-top: 90px; /* separación grande */
-  border-radius: 24px;
-  overflow: hidden;
-  background: black;
-}
-
-/* Zoom muy leve continuo */
-.bz-teamImage {
-  width: 100%;
-  height: auto;
-  display: block;
-  opacity: 0.95;
-  animation: slowZoom 18s ease-in-out infinite alternate;
-}
-
-/* Degradado fuerte arriba */
-.bz-teamWrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 220px;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 12, 14, 1) 0%,
-    rgba(10, 12, 14, 0.85) 40%,
-    rgba(10, 12, 14, 0) 100%
-  );
-  z-index: 2;
-}
-
-/* Fade inferior suave */
-.bz-teamWrapper::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 160px;
-  background: linear-gradient(
-    to top,
-    rgba(10, 12, 14, 1),
-    rgba(10, 12, 14, 0)
-  );
-  z-index: 2;
-}
-
-/* Animación zoom */
-@keyframes slowZoom {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.05);
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
+
+type Division = { id: number; name: string };
+
+type Training = {
+  id: number;
+  division_id: number | null;
+  division_name: string;
+  starts_at: string; // timestamptz
+  location: string;
+  notes: string | null;
+};
+
+type Attendee = {
+  user_id: string;
+  display_name: string;
+  status: "going" | "not_going" | "pending";
+};
+
+function fmtDateTime(iso: string) {
+  try {
+    return new Date(iso).toLocaleString("es-ES", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return iso;
   }
 }
-/* =========================
-   DASHBOARD (Panel principal)
-   ========================= */
 
-.bz-dash {
-  padding: 34px 18px 46px;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
+function monthLabel(d: Date) {
+  return d.toLocaleDateString("es-ES", { month: "long", year: "numeric" });
 }
 
-.bz-dashTitle {
-  margin: 10px 0 0;
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: 0.2px;
-  color: rgba(255, 255, 255, 0.96);
-
-  /* glow amarillo sutil */
-  text-shadow:
-    0 0 18px rgba(245, 216, 77, 0.22),
-    0 0 42px rgba(245, 216, 77, 0.14);
+function ymd(d: Date) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
 }
 
-/* Más separación entre título y enlaces */
-.bz-dashLinks {
-  display: grid;
-  gap: 22px;           /* separación entre botones */
-  margin-top: 34px;    /* separación desde el título */
+function startOfMonth(d: Date) {
+  return new Date(d.getFullYear(), d.getMonth(), 1);
+}
+function endOfMonth(d: Date) {
+  return new Date(d.getFullYear(), d.getMonth() + 1, 0);
 }
 
-.bz-dashBtn {
-  display: block;
-  padding: 22px 18px;
-  border-radius: 18px;
-  border: 2px solid rgba(245, 216, 77, 0.9);
-  text-decoration: none;
-  font-weight: 900;
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.95);
-
-  background: rgba(0, 0, 0, 0.55);
-  box-shadow:
-    0 18px 55px rgba(0, 0, 0, 0.35),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
-  will-change: transform;
-}
-
-/* “Efecto Nike”: zoom MUY leve + glow + respiración */
-.bz-dashBtn:hover {
-  transform: translateY(-2px) scale(1.01);
-  border-color: rgba(245, 216, 77, 1);
-  background: rgba(0, 0, 0, 0.62);
-  box-shadow:
-    0 24px 75px rgba(0, 0, 0, 0.45),
-    0 0 0 2px rgba(245, 216, 77, 0.14),
-    0 0 26px rgba(245, 216, 77, 0.18);
-}
-
-.bz-dashBtn:active {
-  transform: translateY(0px) scale(0.995);
-}
-
-/* =========================
-   IMAGEN FINAL (integrada)
-   ========================= */
-
-.bz-teamWrapper {
-  position: relative;
-  margin-top: 34px;          /* separación respecto a los botones */
-  border-radius: 22px;
-  overflow: hidden;
-
-  /* Fondo base: que el final “tire” a amarillo */
-  background:
-    radial-gradient(1200px 520px at 50% 110%, rgba(245, 216, 77, 0.45), rgba(245, 216, 77, 0) 62%),
-    radial-gradient(900px 420px at 0% 0%, rgba(245, 216, 77, 0.12), rgba(0, 0, 0, 0) 60%),
-    rgba(0, 0, 0, 0.35);
-
-  border: 1px solid rgba(245, 216, 77, 0.18);
-  box-shadow: 0 28px 85px rgba(0, 0, 0, 0.55);
-}
-
-/* Degradado fuerte arriba (fade) */
-.bz-teamFadeTop {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.82) 0%,
-    rgba(0, 0, 0, 0.34) 36%,
-    rgba(0, 0, 0, 0.10) 64%,
-    rgba(0, 0, 0, 0.00) 100%
-  );
-  z-index: 2;
-}
-
-/* Empuje amarillo abajo para integrar */
-.bz-teamFadeBottom {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(245, 216, 77, 0.00) 55%,
-    rgba(245, 216, 77, 0.22) 78%,
-    rgba(245, 216, 77, 0.42) 100%
-  );
-  z-index: 1;
-}
-
-.bz-teamImage {
-  width: 100%;
-  height: auto;
-  display: block;
-  opacity: 0.96;
-  filter: contrast(1.02) brightness(1.02);
-
-  /* Fade suave hacia abajo para que “se funda” con el amarillo */
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 62%, rgba(0,0,0,0.75) 78%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 62%, rgba(0,0,0,0.75) 78%, rgba(0,0,0,0) 100%);
-}
-/* ===== Dashboard look ===== */
-.bz-dashTitle {
-  font-size: 40px;
-  font-weight: 900;
-  margin: 26px 0 38px; /* más separación del título */
-  color: #fff;
-  text-shadow:
-    0 0 10px rgba(245, 216, 77, 0.25),
-    0 0 28px rgba(245, 216, 77, 0.15);
-}
-
-.bz-dashGrid {
-  display: grid;
-  gap: 22px;
-  margin-top: 10px;
-}
-
-.bz-dashBtn {
-  padding: 22px;
-  border-radius: 18px;
-  border: 2px solid #f5d84d;
-  font-weight: 900;
-  font-size: 18px;
-  text-decoration: none;
-  color: white;
-  background: rgba(0, 0, 0, 0.55);
-  display: block;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-}
-
-.bz-dashBtn:hover {
-  transform: translateY(-2px);
-  background: rgba(0, 0, 0, 0.62);
-  box-shadow:
-    0 22px 70px rgba(0,0,0,0.45),
-    0 0 0 2px rgba(245, 216, 77, 0.15);
-}
-
-/* ===== Imagen final: zoom leve + fade + mezcla con amarillo ===== */
-.bz-teamWrapper {
-  position: relative;
-  margin-top: 44px; /* más separado de botones */
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid rgba(245, 216, 77, 0.22);
-  background: radial-gradient(
-    1200px 500px at 50% 0%,
-    rgba(245, 216, 77, 0.12),
-    rgba(0,0,0,0.0)
+function Row({ label, value }: { label: string; value: any }) {
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "140px 1fr",
+        gap: 10,
+        alignItems: "center",
+        padding: "8px 0",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
+      <div style={{ opacity: 0.72 }}>{label}</div>
+      <div style={{ fontWeight: 900 }}>{value}</div>
+    </div>
   );
 }
 
-.bz-teamImage {
-  width: 100%;
-  height: auto;
-  display: block;
-  transform: scale(1.03); /* zoom muy leve */
-  transition: transform 400ms ease;
-  opacity: 0.95;
-}
+const actionBtn: React.CSSProperties = {
+  padding: "10px 14px",
+  borderRadius: 12,
+  border: "1px solid rgba(255,255,255,0.16)",
+  background: "rgba(0,0,0,0.35)",
+  color: "white",
+  fontWeight: 900,
+};
 
-.bz-teamWrapper:hover .bz-teamImage {
-  transform: scale(1.045);
-}
+export default function TrainingsPage() {
+  const [msg, setMsg] = useState<string | null>(null);
 
-.bz-teamFadeTop {
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 120px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0));
-  pointer-events: none;
-  z-index: 2;
-}
+  const [myRole, setMyRole] = useState<"admin" | "coach" | "player">("player");
 
-/* Esto integra la parte baja con el "amarillo" del tema */
-.bz-teamFadeBottom {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 170px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0),
-    rgba(245, 216, 77, 0.12) 45%,
-    rgba(245, 216, 77, 0.30) 75%,
-    rgba(245, 216, 77, 0.45) 100%
+  const [divisions, setDivisions] = useState<Division[]>([]);
+  const [myDivisionIds, setMyDivisionIds] = useState<number[]>([]);
+
+  const [trainings, setTrainings] = useState<Training[]>([]);
+  const [selectedTrainingId, setSelectedTrainingId] = useState<number | null>(null);
+  const [attendees, setAttendees] = useState<Attendee[]>([]);
+  const [myStatus, setMyStatus] = useState<Attendee["status"]>("pending");
+
+  // calendario
+  const [calMonth, setCalMonth] = useState<Date>(() => new Date());
+
+  const selectedTraining = useMemo(
+    () => trainings.find((t) => t.id === selectedTrainingId) || null,
+    [trainings, selectedTrainingId]
   );
-  pointer-events: none;
-  z-index: 2;
-}
-/* ===== Layout general ===== */
-.bz-container {
-  padding: 26px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
 
-.bz-headerRow{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:14px;
-  flex-wrap:wrap;
-}
+  const canManage = myRole === "admin" || myRole === "coach";
 
-.bz-h1{
-  font-size: 40px;
-  font-weight: 900;
-  margin: 0;
-  letter-spacing: 1px;
-}
+  // Un player solo se puede apuntar a entrenos de divisiones donde está asignado
+  const canAttendSelected = useMemo(() => {
+    if (!selectedTraining) return false;
+    if (canManage) return true;
+    if (!selectedTraining.division_id) return false;
+    return myDivisionIds.includes(selectedTraining.division_id);
+  }, [selectedTraining, canManage, myDivisionIds]);
 
-.bz-sub{
-  margin: 8px 0 0;
-  opacity: .75;
-}
+  const trainingDaysSet = useMemo(() => {
+    const s = new Set<string>();
+    trainings.forEach((t) => {
+      const d = new Date(t.starts_at);
+      s.add(ymd(new Date(d.getFullYear(), d.getMonth(), d.getDate())));
+    });
+    return s;
+  }, [trainings]);
 
-.bz-pillRow{ display:flex; gap:10px; flex-wrap:wrap; }
-.bz-pill{
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.35);
-  font-size: 12px;
-  opacity: .9;
-}
+  async function loadRoleAndMyDivisions() {
+    const { data: u } = await supabase.auth.getUser();
+    const uid = u.user?.id;
+    if (!uid) {
+      window.location.href = "/login";
+      return;
+    }
 
-/* ===== Panel / Cards ===== */
-.bz-panel{
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.35);
-  box-shadow: 0 18px 60px rgba(0,0,0,.55);
-  overflow: hidden;
-}
+    const { data: prof, error: pErr } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("user_id", uid)
+      .single();
 
-.bz-grid2{
-  display:grid;
-  grid-template-columns: 1.2fr .8fr; /* detalle más estrecho para ver el perro */
-  gap: 14px;
-}
-@media (max-width: 900px){
-  .bz-grid2{ grid-template-columns: 1fr; }
-}
+    if (!pErr && prof?.role) setMyRole(prof.role);
 
-.bz-card{
-  text-align:left;
-  padding: 14px;
-  border-radius: 16px;
-  border: 1px solid rgba(245,216,77,.25);
-  background: rgba(0,0,0,.35);
-  cursor:pointer;
-  transition: transform .15s ease, border-color .15s ease, background .15s ease;
-}
-.bz-card:hover{
-  transform: translateY(-1px);
-  border-color: rgba(245,216,77,.45);
-  background: rgba(0,0,0,.45);
-}
-.bz-cardActive{
-  border: 2px solid rgba(245,216,77,.85);
-}
-
-.bz-cardTitle{ font-weight: 900; font-size: 16px; }
-.bz-cardSub{ opacity: .75; margin-top: 4px; font-size: 13px; }
-.bz-cardDate{ opacity: .9; font-size: 13px; }
-
-/* ===== Detalle + perro ===== */
-.bz-detailPanel{ position: relative; }
-.bz-dogBg{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  opacity: .22;               /* más visible (antes estaba demasiado) */
-  filter: blur(1.2px);        /* leve blur */
-  transform: translateX(14%) scale(1.05);
-  pointer-events:none;
-}
-.bz-detailPanel::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:1;
-  background: radial-gradient(circle at 60% 40%, rgba(245,216,77,.16), rgba(0,0,0,.65) 65%);
-  pointer-events:none;
-}
-
-.bz-detailLine{
-  display:flex;
-  justify-content:space-between;
-  gap: 12px;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.bz-detailLine span{ opacity:.75; }
-.bz-warn{
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(245,216,77,.25);
-  background: rgba(245,216,77,.08);
-}
-
-/* ===== Inputs / Buttons ===== */
-.bz-input{
-  width: 100%;
-  padding: 12px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.35);
-  color: white;
-}
-
-.bz-btn{
-  padding: 10px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(245,216,77,.25);
-  background: rgba(0,0,0,.35);
-  color: white;
-  font-weight: 900;
-  cursor: pointer;
-  transition: transform .15s ease, border-color .15s ease, background .15s ease;
-}
-.bz-btn:hover{
-  transform: translateY(-1px);
-  border-color: rgba(245,216,77,.45);
-  background: rgba(0,0,0,.45);
-}
-.bz-btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-  transform:none;
-}
-.bz-btnPrimary{
-  border: 1px solid rgba(245,216,77,.45);
-  background: rgba(245,216,77,.12);
-}
-
-/* ===== Calendario ===== */
-.bz-calHead{
-  margin-top: 14px;
-  display:grid;
-  grid-template-columns: repeat(7,1fr);
-  gap: 10px;
-  opacity: .65;
-  font-size: 12px;
-  text-align:center;
-}
-
-.bz-calGrid{
-  margin-top: 10px;
-  display:grid;
-  grid-template-columns: repeat(7,1fr);
-  gap: 10px;
-}
-
-.bz-calCell{
-  height: 46px;
-  border-radius: 14px;
-  display:grid;
-  place-items:center;
-  border: 1px solid rgba(255,255,255,.08);
-  background: rgba(0,0,0,.25);
-  font-weight: 800;
-}
-.bz-calEmpty{
-  opacity: .25;
-}
-.bz-calMarked{
-  border-color: rgba(245,216,77,.65);
-  background: rgba(245,216,77,.14);
-  box-shadow: 0 10px 30px rgba(245,216,77,.08);
-}
-/* =========================
-   ENTRENAMIENTOS: panel detalle con mascota
-   ========================= */
-
-.bz-detailPanel {
-  padding: 18px;
-}
-
-.bz-detailGrid {
-  display: grid;
-  grid-template-columns: minmax(320px, 520px) 1fr;
-  gap: 18px;
-  align-items: stretch;
-  min-height: 260px;
-}
-
-.bz-detailLeft {
-  z-index: 2;
-}
-
-/* Columna del perro */
-.bz-detailArt {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  min-height: 240px;
-}
-
-/* Perro + difuminado + integración */
-.bz-detailArt::before {
-  content: "";
-  position: absolute;
-  inset: -20px;
-  background-image: url("/dog.png");
-  background-repeat: no-repeat;
-  background-position: 70% 55%;
-  background-size: contain;
-  opacity: 0.22;               /* más visible que antes */
-  filter: blur(1.2px);
-  transform: scale(1.03);
-}
-
-/* Vignette/halo para integrar */
-.bz-detailArt::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 70% 55%, rgba(245,216,77,0.18), rgba(0,0,0,0) 55%),
-    radial-gradient(circle at 70% 55%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 70%),
-    linear-gradient(90deg, rgba(0,0,0,0.65), rgba(0,0,0,0.0) 40%);
-}
-
-/* Responsive: que baje abajo en móvil */
-@media (max-width: 900px) {
-  .bz-detailGrid {
-    grid-template-columns: 1fr;
+    // mis divisiones (para players)
+    const { data: links } = await supabase.from("player_divisions").select("division_id").eq("user_id", uid);
+    setMyDivisionIds((links || []).map((x: any) => x.division_id).filter(Boolean));
   }
-  .bz-detailArt {
-    min-height: 220px;
+
+  async function loadDivisions() {
+    const { data, error } = await supabase.from("divisions").select("id,name").order("name", { ascending: true });
+    if (error) {
+      setMsg("❌ " + error.message);
+      return;
+    }
+    setDivisions((data || []) as any);
   }
-  .bz-detailArt::before {
-    background-position: 50% 55%;
+
+  async function loadTrainings() {
+    setMsg(null);
+
+    // Ajusta el nombre de la tabla/campos si en tu DB es distinto:
+    // Aquí asumo: trainings: (id, division_id, starts_at, location, notes)
+    // y que divisions tiene id/name.
+    const { data, error } = await supabase
+      .from("trainings")
+      .select("id,division_id,starts_at,location,notes, divisions(name)")
+      .order("starts_at", { ascending: true });
+
+    if (error) {
+      setMsg("❌ " + error.message);
+      return;
+    }
+
+    const rows = (data || []).map((r: any) => ({
+      id: r.id,
+      division_id: r.division_id,
+      division_name: r.divisions?.name ?? "—",
+      starts_at: r.starts_at,
+      location: r.location,
+      notes: r.notes ?? null,
+    })) as Training[];
+
+    setTrainings(rows);
+
+    // si no hay seleccionado, seleccionar el primero futuro o el primero
+    if (!selectedTrainingId && rows.length > 0) setSelectedTrainingId(rows[0].id);
   }
+
+  async function loadAttendance(trainingId: number) {
+    const { data: u } = await supabase.auth.getUser();
+    const uid = u.user?.id ?? null;
+
+    // Ajusta si tu tabla se llama diferente:
+    // training_attendance: (training_id, user_id, status)
+    const { data, error } = await supabase
+      .from("training_attendance")
+      .select("user_id,status, profiles(first_name,last_name)")
+      .eq("training_id", trainingId);
+
+    if (error) {
+      setAttendees([]);
+      return;
+    }
+
+    const list: Attendee[] = (data || []).map((r: any) => {
+      const n = `${r.profiles?.first_name ?? ""} ${r.profiles?.last_name ?? ""}`.trim();
+      return {
+        user_id: r.user_id,
+        status: r.status,
+        display_name: n || r.user_id.slice(0, 8),
+      };
+    });
+
+    setAttendees(list);
+
+    const mine = uid ? list.find((a) => a.user_id === uid) : undefined;
+    setMyStatus(mine?.status ?? "pending");
+  }
+
+  async function setStatus(next: Attendee["status"]) {
+    if (!selectedTraining) return;
+
+    const { data: u } = await supabase.auth.getUser();
+    const uid = u.user?.id;
+    if (!uid) return setMsg("⚠️ Debes iniciar sesión.");
+
+    if (!canAttendSelected) return;
+
+    // upsert
+    const { error } = await supabase.from("training_attendance").upsert(
+      {
+        training_id: selectedTraining.id,
+        user_id: uid,
+        status: next,
+      },
+      { onConflict: "training_id,user_id" }
+    );
+
+    if (error) return setMsg("❌ " + error.message);
+
+    setMsg("✅ Guardado");
+    await loadAttendance(selectedTraining.id);
+  }
+
+  // calendario UI (simple)
+  const calDays = useMemo(() => {
+    const start = startOfMonth(calMonth);
+    const end = endOfMonth(calMonth);
+
+    // queremos grid lunes->domingo
+    const startDow = (start.getDay() + 6) % 7; // 0 lunes
+    const daysInMonth = end.getDate();
+
+    const cells: { date: Date | null; label: string }[] = [];
+
+    for (let i = 0; i < startDow; i++) cells.push({ date: null, label: "" });
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dt = new Date(calMonth.getFullYear(), calMonth.getMonth(), d);
+      cells.push({ date: dt, label: String(d) });
+    }
+
+    // relleno hasta múltiplo de 7
+    while (cells.length % 7 !== 0) cells.push({ date: null, label: "" });
+
+    return cells;
+  }, [calMonth]);
+
+  useEffect(() => {
+    (async () => {
+      await loadRoleAndMyDivisions();
+      await loadDivisions();
+      await loadTrainings();
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!selectedTrainingId) return;
+    loadAttendance(selectedTrainingId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedTrainingId]);
+
+  return (
+    <main className="bz-container" style={{ padding: 24, maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "end" }}>
+        <div>
+          <h1 className="bz-h1" style={{ margin: 0, letterSpacing: 1 }}>ENTRENAMIENTOS</h1>
+          <p className="bz-sub" style={{ marginTop: 6 }}>Entrenos y asistencia</p>
+        </div>
+
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+          <div className="bz-pill">Rol: <b style={{ marginLeft: 6 }}>{myRole}</b></div>
+          <div className="bz-pill">Divisiones para apuntarme: <b style={{ marginLeft: 6 }}>{myDivisionIds.length}</b></div>
+        </div>
+      </div>
+
+      {msg && (
+        <div className="bz-panel" style={{ marginTop: 12, padding: 12 }}>
+          {msg}
+        </div>
+      )}
+
+      {/* PRÓXIMOS ENTRENOS */}
+      <section className="bz-panel" style={{ marginTop: 14, padding: 16 }}>
+        <h3 className="bz-h3" style={{ marginTop: 0 }}>Próximos entrenos</h3>
+
+        <div style={{ display: "grid", gap: 12 }}>
+          {trainings.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setSelectedTrainingId(t.id)}
+              style={{
+                textAlign: "left",
+                width: "100%",
+                padding: 16,
+                borderRadius: 16,
+                cursor: "pointer",
+                background: "rgba(0,0,0,0.25)",
+                border:
+                  t.id === selectedTrainingId
+                    ? "2px solid rgba(245,216,77,0.95)"
+                    : "1px solid rgba(255,255,255,0.10)",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "start" }}>
+                <div>
+                  <div style={{ fontWeight: 1000, fontSize: 18, letterSpacing: 0.5, color: "white" }}>
+                    {String(t.division_name).toUpperCase()}
+                  </div>
+                  <div style={{ opacity: 0.95, marginTop: 4, color: "rgba(255,255,255,0.92)" }}>
+                    {t.location}
+                  </div>
+                </div>
+                <div style={{ opacity: 0.9, fontWeight: 800, color: "rgba(255,255,255,0.92)" }}>
+                  {fmtDateTime(t.starts_at)}
+                </div>
+              </div>
+            </button>
+          ))}
+
+          {trainings.length === 0 && <p style={{ opacity: 0.75 }}>No hay entrenos aún.</p>}
+        </div>
+      </section>
+
+      {/* DETALLE (arreglado + perro visible) */}
+      <section className="bz-panel" style={{ marginTop: 14, padding: 0, overflow: "hidden" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(340px, 520px) 1fr",
+            gap: 0,
+            minHeight: 260,
+          }}
+        >
+          {/* IZQUIERDA */}
+          <div style={{ padding: 16 }}>
+            <h3 className="bz-h3" style={{ marginTop: 0 }}>Detalle</h3>
+
+            {!selectedTraining ? (
+              <p style={{ opacity: 0.75 }}>Selecciona un entreno.</p>
+            ) : (
+              <>
+                <div style={{ display: "grid", gap: 2 }}>
+                  <Row label="División" value={selectedTraining.division_name} />
+                  <Row label="Fecha/Hora" value={fmtDateTime(selectedTraining.starts_at)} />
+                  <Row label="Lugar" value={selectedTraining.location} />
+                  {selectedTraining.notes ? <Row label="Notas" value={selectedTraining.notes} /> : null}
+                </div>
+
+                {!canAttendSelected && (
+                  <div
+                    style={{
+                      marginTop: 12,
+                      padding: 12,
+                      borderRadius: 12,
+                      border: "1px solid rgba(245,216,77,0.35)",
+                      background: "rgba(245,216,77,0.08)",
+                    }}
+                  >
+                    🚫 Puedes ver este entreno y quién va, pero <b>no</b> puedes apuntarte.
+                  </div>
+                )}
+
+                <div style={{ display: "flex", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
+                  <button
+                    onClick={() => setStatus("going")}
+                    disabled={!canAttendSelected}
+                    style={{
+                      ...actionBtn,
+                      border: myStatus === "going" ? "2px solid rgba(245,216,77,0.95)" : actionBtn.border,
+                      opacity: canAttendSelected ? 1 : 0.45,
+                      cursor: canAttendSelected ? "pointer" : "not-allowed",
+                    }}
+                  >
+                    ✅ Voy
+                  </button>
+
+                  <button
+                    onClick={() => setStatus("not_going")}
+                    disabled={!canAttendSelected}
+                    style={{
+                      ...actionBtn,
+                      border: myStatus === "not_going" ? "2px solid rgba(245,216,77,0.95)" : actionBtn.border,
+                      opacity: canAttendSelected ? 1 : 0.45,
+                      cursor: canAttendSelected ? "pointer" : "not-allowed",
+                    }}
+                  >
+                    ❌ No voy
+                  </button>
+                </div>
+
+                <h4 style={{ marginTop: 16 }}>Quién va</h4>
+                <ul style={{ marginTop: 6 }}>
+                  {attendees
+                    .filter((a) => a.status === "going")
+                    .map((a) => (
+                      <li key={a.user_id}>{a.display_name}</li>
+                    ))}
+                </ul>
+
+                <details style={{ marginTop: 10 }}>
+                  <summary>Ver todos</summary>
+                  <ul>
+                    {attendees.map((a) => (
+                      <li key={a.user_id}>
+                        {a.display_name} —{" "}
+                        {a.status === "going" ? "✅ voy" : a.status === "not_going" ? "❌ no voy" : "⏳ pendiente"}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              </>
+            )}
+          </div>
+
+          {/* DERECHA (ARTE PERRO) */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "relative",
+              background: "radial-gradient(800px 280px at 65% 55%, rgba(245,216,77,0.18), rgba(0,0,0,0) 60%)",
+            }}
+          >
+            {/* perro */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage: "url('/dog.png')",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "70% 55%",
+                backgroundSize: "min(520px, 72%)",
+                filter: "blur(1.4px) saturate(1.1)",
+                opacity: 0.28,
+                transform: "scale(1.02)",
+              }}
+            />
+            {/* fade para integrarlo */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(90deg, rgba(12,13,15,0.95) 0%, rgba(12,13,15,0.55) 35%, rgba(12,13,15,0.10) 100%)",
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* CALENDARIO ABAJO */}
+      <section className="bz-panel" style={{ marginTop: 14, padding: 16 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+          <button
+            className="bz-btn"
+            onClick={() => setCalMonth(new Date(calMonth.getFullYear(), calMonth.getMonth() - 1, 1))}
+            aria-label="Mes anterior"
+          >
+            ◀
+          </button>
+
+          <div style={{ fontWeight: 1000, letterSpacing: 0.6 }}>{monthLabel(calMonth)}</div>
+
+          <button
+            className="bz-btn"
+            onClick={() => setCalMonth(new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 1))}
+            aria-label="Mes siguiente"
+          >
+            ▶
+          </button>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 10, marginTop: 14 }}>
+          {["L", "M", "X", "J", "V", "S", "D"].map((d) => (
+            <div key={d} style={{ opacity: 0.75, textAlign: "center", fontWeight: 900 }}>
+              {d}
+            </div>
+          ))}
+
+          {calDays.map((c, idx) => {
+            const key = `${idx}-${c.label}`;
+            const hasTraining = c.date ? trainingDaysSet.has(ymd(c.date)) : false;
+
+            return (
+              <div
+                key={key}
+                style={{
+                  height: 46,
+                  borderRadius: 14,
+                  display: "grid",
+                  placeItems: "center",
+                  border: hasTraining ? "1px solid rgba(245,216,77,0.75)" : "1px solid rgba(255,255,255,0.08)",
+                  background: hasTraining ? "rgba(245,216,77,0.12)" : "rgba(0,0,0,0.18)",
+                  color: c.date ? "white" : "rgba(255,255,255,0.25)",
+                  fontWeight: 900,
+                }}
+              >
+                {c.label}
+              </div>
+            );
+          })}
+        </div>
+
+        <div style={{ marginTop: 10, fontSize: 12, opacity: 0.7 }}>
+          Los días con entreno aparecen marcados en amarillo.
+        </div>
+      </section>
+    </main>
+  );
 }
